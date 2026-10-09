@@ -1,0 +1,41 @@
+.contenedor-principal{
+    border: 1px solid black;
+    padding: 5px;
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contenedor-secundario{
+    border: 1px solid black;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.caja1{
+    width: 70%;
+        border: 1px solid black;
+    padding: 5px;
+    background-color: lightblue;
+    margin: 5px;
+    text-align: center;
+}
+
+.caja2{
+    width: 30%;
+        border: 1px solid black;
+    padding: 5px;
+    background-color: lightblue;
+    margin: 5px;
+    text-align: center;
+}
+
+.caja{
+    border: 1px solid black;
+    padding: 5px;
+    background-color: lightblue;
+    margin: 5px;
+    text-align: center;
+}

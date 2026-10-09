@@ -1,0 +1,250 @@
+/* Paleta de colores "Punto Medio": Gris pizarra (sin llegar al negro puro) */
+:root {
+    --color-fondo: #2c2f33;       /* Gris medio-oscuro para el fondo general */
+    --color-fondo-alt: #23272a;   /* Gris apenas más profundo para intercalar secciones */
+    --color-tarjeta: #383c42;     /* Gris más claro para que las cajas resalten del fondo */
+    --color-texto: #f6f6f6;       /* Blanco suave para lectura cómoda */
+    --color-texto-suave: #b9bbbe; /* Gris claro para subtítulos y textos secundarios */
+    --color-acento: #10b981;      /* Verde esmeralda para destacar botones y detalles */
+    --color-borde: #4a4d53;       /* Gris intermedio para bordes sutiles */
+}
+
+/* Configuraciones básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* =========================================
+   FLEXBOX SIMPLE: BARRA DE NAVEGACIÓN
+   ========================================= */
+.navbar {
+    display: flex;                   /* Activa Flexbox */
+    justify-content: space-between;  /* Empuja el Logo a la izquierda y los links a la derecha */
+    align-items: center;             /* Centra verticalmente los elementos */
+    
+    background-color: var(--color-tarjeta);
+    padding: 1rem 5%;
+    border-bottom: 1px solid var(--color-borde);
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-acento);
+}
+
+.nav-links {
+    display: flex;                   /* Activa Flexbox para la lista de enlaces */
+    gap: 2rem;                       /* Deja un espacio exacto de 2rem entre cada enlace */
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--color-acento);
+}
+
+/* Diseño de Secciones Generales */
+.seccion {
+    padding: 1px 5% 60px; /* Espacio arriba para que el NavBar no tape el contenido */
+    max-width: 1000px;
+    margin: 0 auto; /* Centra la sección en la pantalla */
+}
+
+
+.seccion-proyectos{
+
+display: flex;
+flex-direction: column;
+}
+
+.tarjeta-proyecto {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-tarjeta);
+    padding: 3rem;
+    border: 1px solid var(--color-borde);
+    margin-bottom: 2rem; /* Espacio entre tarjetas */
+}
+
+.imagen-proyecto {
+    width: 70%;
+    max-width: 450px;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.foto-perfil{
+    width: 300px;
+    height: 300px;
+    border-radius: 10%; /* Hace que la imagen sea circular */
+    display: block;
+    margin: 0rem auto; /* Centra la imagen horizontalmente */
+    margin-left: 5rem;
+}
+
+.links{
+    font-size: 2rem;
+    background-color: var(--color-tarjeta);
+    padding: 1rem;
+    color: var(--color-acento);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.fondo-alternativo {
+    background-color: var(--color-fondo-alt);
+    max-width: 100%; /* Esta sección ocupa todo el ancho */
+    padding-left: calc(5% + auto);
+    padding-right: calc(5% + auto);
+}
+
+.titulo-seccion {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1px;
+    margin-bottom: 3rem;
+    color: var(--color-acento);
+}
+
+/* Inicio */
+.seccion-inicio {
+    display: flex;
+    flex-direction: row;
+    padding: 150px 5% 80px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.seccion-inicio h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.seccion-inicio span {
+    color: var(--color-acento);
+}
+
+.seccion-inicio h2 {
+    color: var(--color-texto-suave);
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   GRID SIMPLE: CONTENEDOR DE TARJETAS
+   ========================================= */
+.contenedor-tarjetas {
+    display: grid; /* Activa CSS Grid */
+    
+    /* Crea columnas de mínimo 300px. Si sobra espacio, se estiran (1fr).
+       Si la pantalla es menor a 300px, los elementos bajan automáticamente. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    gap: 2rem; /* Espacio entre cada tarjeta */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Estilo de las Tarjetas */
+.tarjeta {
+    background-color: var(--color-tarjeta);
+    padding: 3rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+}
+
+.tarjeta h3 {
+    margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+    color: var(--color-acento);
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Formulario */
+.tarjeta-contacto {
+    background-color: var(--color-tarjeta);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#form-contacto {
+    display: flex;           /* Flexbox para apilar los inputs */
+    flex-direction: column;  /* Los coloca de arriba hacia abajo (en columna) */
+    gap: 1rem;               /* Espacio entre inputs */
+    margin-top: 1.5rem;
+}
+
+input, textarea {
+    padding: 0.8rem;
+    background-color: var(--color-fondo-alt); /* Fondo más oscuro para los inputs */
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--color-texto-suave);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-acento);
+}
+
+.btn {
+    background-color: var(--color-acento);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-tarjeta);
+    border-top: 1px solid var(--color-borde);
+    color: var(--color-texto-suave);
+    margin-top: 2rem;
+}

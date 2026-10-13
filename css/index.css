@@ -61,6 +61,13 @@ body {
     font-weight: 500;
 }
 
+.nav-links a.activo {
+    text-decoration: none;
+    color: var(--color-acento);
+    font-weight: 500;
+}
+
+
 .nav-links a:hover {
     color: var(--color-acento);
 }
@@ -123,7 +130,7 @@ body {
 .titulo-seccion {
     text-align: center;
     font-size: 2rem;
-    margin-top: 1px;
+    margin-top: 10rem;
     margin-bottom: 3rem;
     color: var(--color-acento);
 }
@@ -246,4 +253,14 @@ footer {
     border-top: 1px solid var(--color-borde);
     color: var(--color-texto-suave);
     margin-top: 2rem;
+}
+
+@media(max-width: 768px){
+.contenedor-tarjetas-proyectos{
+    display: grid;
+    grid-template-columns: 1fr;
+  
+}
+
+
 }

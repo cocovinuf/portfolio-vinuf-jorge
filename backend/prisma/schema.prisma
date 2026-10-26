@@ -1,0 +1,80 @@
+datasource db {
+  provider = "mysql" // Cambia a "postgresql" o "sqlite" si usas otra base de datos
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Usuario {
+  id         Int         @id @default(autoincrement())
+  apellido   String      @db.VarChar(100)
+  nombre     String      @db.VarChar(100)
+  email      String      @unique @db.VarChar(150)
+  password   String      @db.VarChar(255)
+  secciones  Seccion[]
+  formacion  Formacion[]
+  proyectos  Proyecto[]
+
+  @@map("usuarios")
+}
+
+model Seccion {
+  id         Int     @id @default(autoincrement())
+  titulo     String  @db.VarChar(150)
+  subtitulo  String? @db.VarChar(150)
+  texto      String? @db.VarChar(255)
+  nombre     String  @db.VarChar(100)
+  usuarioId  Int     @map("FK_usuario_id")
+  usuario    Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@map("secciones")
+}
+
+model Formacion {
+  id          Int     @id @default(autoincrement())
+  usuarioId   Int     @map("FK_usuario_id")
+  titulo      String  @db.VarChar(150)
+  descripcion String  @db.Text
+  tipo        String  @db.VarChar(150)
+  urlImagen   String? @map("url_imagen") @db.VarChar(255)
+  estaActivo  Boolean @default(true) @map("esta_activo")
+  usuario     Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@map("formacion")
+}
+
+model Proyecto {
+  id              Int                  @id @default(autoincrement())
+  usuarioId       Int                  @map("FK_usuario_id")
+  titulo          String              @db.VarChar(150)
+  descripcion     String              @db.Text
+  imagenUrl       String              @map("imagen_url") @db.VarChar(255)
+  urlRepositorio  String              @map("url_repositorio") @db.VarChar(255)
+  estaActivo      Boolean             @default(true) @map("esta_activo")
+  usuario         Usuario             @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  tecnologias     ProyectoTecnologia[]
+
+  @@map("proyectos")
+}
+
+model Tecnologia {
+  id          Int                  @id @default(autoincrement())
+  nombre      String              @db.VarChar(50)
+  descripcion String?             @db.Text
+  imagenUrl   String?             @map("imagen_url") @db.VarChar(255)
+  proyectos   ProyectoTecnologia[]
+
+  @@map("tecnologias")
+}
+
+model ProyectoTecnologia {
+  proyectoId   Int        @map("FK_proyecto_id")
+  tecnologiaId Int        @map("FK_tecnologia_id")
+  proyecto     Proyecto   @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  tecnologia   Tecnologia @relation(fields: [tecnologiaId], references: [id], onDelete: Cascade)
+
+  @@id([proyectoId, tecnologiaId])
+  @@map("proyecto_tecnologia")
+}

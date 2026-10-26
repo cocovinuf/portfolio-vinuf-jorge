@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Portfolio</title>
+    <link rel="stylesheet" href="/css/admin/panel_admin.css">
+</head>
+<body>
+    <!-- Barra lateral de navegación -->
+    <aside class="sidebar">
+        <div class="logo">Admin<span>Panel</span></div>
+        <nav class="nav-links">
+            <a href="#" class="activo" onclick="mostrarSeccion('sec-proyectos', this)">Proyectos</a>
+            <a href="#" onclick="mostrarSeccion('sec-formacion', this)">Formación</a>
+            <a href="#" onclick="mostrarSeccion('sec-secciones', this)">Secciones</a>
+            <a href="#" onclick="mostrarSeccion('sec-tecnologias', this)">Tecnologías</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/" class="btn-secundario">Volver al sitio</a>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+        
+        <!-- SECCIÓN PROYECTOS -->
+        <section id="sec-proyectos" class="panel-seccion activa">
+            <div class="cabecera-seccion">
+                <h2>Gestión de Proyectos</h2>
+                <button class="btn" onclick="abrirModal('modal-proyecto')">+ Nuevo Proyecto</button>
+            </div>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Repositorio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-proyectos-body">
+                        <!-- Los datos se inyectarán con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FORMACIÓN -->
+        <section id="sec-formacion" class="panel-seccion">
+            <div class="cabecera-seccion">
+                <h2>Gestión de Formación</h2>
+                <button class="btn" onclick="abrirModal('modal-formacion')">+ Nueva Formación</button>
+            </div>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-formacion-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SECCIONES -->
+        <section id="sec-secciones" class="panel-seccion">
+            <div class="cabecera-seccion">
+                <h2>Gestión de Secciones</h2>
+                <button class="btn" onclick="abrirModal('modal-seccion')">+ Nueva Sección</button>
+            </div>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre (Enum)</th>
+                            <th>Título</th>
+                            <th>Subtítulo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-secciones-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN TECNOLOGÍAS -->
+        <section id="sec-tecnologias" class="panel-seccion">
+            <div class="cabecera-seccion">
+                <h2>Gestión de Tecnologías</h2>
+                <button class="btn" onclick="abrirModal('modal-tecnologia')">+ Nueva Tecnología</button>
+            </div>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-tecnologias-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODALES (Formularios) -->
+    
+    <!-- Modal Proyecto -->
+    <div id="modal-proyecto" class="modal">
+        <div class="modal-contenido tarjeta">
+            <h3>Formulario de Proyecto</h3>
+            <form onsubmit="guardarDatos(event, 'modal-proyecto')">
+                <input type="text" id="proy-titulo" placeholder="Título (VARCHAR 150)" required>
+                <textarea id="proy-desc" rows="3" placeholder="Descripción (TEXT)" required></textarea>
+                <input type="text" id="proy-img" placeholder="URL de la Imagen (VARCHAR 255)">
+                <input type="text" id="proy-repo" placeholder="URL del Repositorio (VARCHAR 255)">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="proy-activo"> Proyecto Activo (BOOL)
+                </label>
+                <div class="modal-acciones">
+                    <button type="button" class="btn-secundario" onclick="cerrarModal('modal-proyecto')">Cancelar</button>
+                    <button type="submit" class="btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Formación -->
+    <div id="modal-formacion" class="modal">
+        <div class="modal-contenido tarjeta">
+            <h3>Formulario de Formación</h3>
+            <form onsubmit="guardarDatos(event, 'modal-formacion')">
+                <input type="text" id="form-titulo" placeholder="Título (VARCHAR 150)" required>
+                <textarea id="form-desc" rows="3" placeholder="Descripción (TEXT)" required></textarea>
+                <input type="text" id="form-tipo" placeholder="Tipo (VARCHAR 150)" required>
+                <input type="text" id="form-img" placeholder="URL de la Imagen (VARCHAR 255)">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="form-activo"> Formación Activa (BOOL)
+                </label>
+                <div class="modal-acciones">
+                    <button type="button" class="btn-secundario" onclick="cerrarModal('modal-formacion')">Cancelar</button>
+                    <button type="submit" class="btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Sección -->
+    <div id="modal-seccion" class="modal">
+        <div class="modal-contenido tarjeta">
+            <h3>Formulario de Sección</h3>
+            <form onsubmit="guardarDatos(event, 'modal-seccion')">
+                <select id="sec-nombre" required>
+                    <option value="" disabled selected>Selecciona Nombre (ENUM)</option>
+                    <option value="inicio">Inicio</option>
+                    <option value="sobre_mi">Sobre Mí</option>
+                    <option value="contacto">Contacto</option>
+                </select>
+                <input type="text" id="sec-titulo" placeholder="Título (VARCHAR 150)" required>
+                <input type="text" id="sec-subtitulo" placeholder="Subtítulo (VARCHAR 150)">
+                <input type="text" id="sec-texto" placeholder="Texto (VARCHAR 255)">
+                <div class="modal-acciones">
+                    <button type="button" class="btn-secundario" onclick="cerrarModal('modal-seccion')">Cancelar</button>
+                    <button type="submit" class="btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tecnología -->
+    <div id="modal-tecnologia" class="modal">
+        <div class="modal-contenido tarjeta">
+            <h3>Formulario de Tecnología</h3>
+            <form onsubmit="guardarDatos(event, 'modal-tecnologia')">
+                <input type="text" id="tec-nombre" placeholder="Nombre (VARCHAR 50)" required>
+                <textarea id="tec-desc" rows="3" placeholder="Descripción (TEXT)"></textarea>
+                <input type="text" id="tec-img" placeholder="URL de la Imagen (VARCHAR 255)">
+                <div class="modal-acciones">
+                    <button type="button" class="btn-secundario" onclick="cerrarModal('modal-tecnologia')">Cancelar</button>
+                    <button type="submit" class="btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

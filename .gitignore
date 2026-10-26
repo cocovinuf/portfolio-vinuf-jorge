@@ -1,0 +1,12 @@
+# Dependencias de Node en cualquier nivel
+**/node_modules/
+
+# Archivos de entorno y credenciales en cualquier nivel
+**/.env
+
+# Logs y archivos del sistema
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db

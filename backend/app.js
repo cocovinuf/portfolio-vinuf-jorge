@@ -27,6 +27,16 @@ app.get('/proyectos', (req, res) => {
 });
 
 
+app.get('/panel_admin', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/vistas/admin/panel_admin.html'));
+});
+
+
+
+
+
+
+
 
 
 // Iniciar el servidor

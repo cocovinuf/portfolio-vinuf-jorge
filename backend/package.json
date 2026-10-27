@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "node src/app.js",
+    "seed": "node src/seed.js",
     "prisma:generate": "prisma generate"
   },
   "devDependencies": {

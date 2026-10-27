@@ -1,23 +1,13 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
+import * as proyectosController from '../controllers/proyectosController.js';
 
 const router = Router();
-const prisma = new PrismaClient();
 
-// Endpoint para obtener los proyectos de la base de datos
-router.get('/proyectos', async (req, res) => {
-    try {
-        const proyectos = await prisma.proyecto.findMany({
-            include: {
-                tecnologias: {
-                    include: { tecnologia: true }
-                }
-            }
-        });
-        res.json(proyectos);
-    } catch (error) {
-        res.status(500).json({ error: 'Error al obtener los proyectos' });
-    }
-});
+// Endpoints para gestionar proyectos (CRUD)
+router.get('/proyectos', proyectosController.listar);
+router.get('/proyectos/:id', proyectosController.obtener);
+router.post('/proyectos', proyectosController.crear);
+router.put('/proyectos/:id', proyectosController.actualizar);
+router.delete('/proyectos/:id', proyectosController.eliminar);
 
 export default router;

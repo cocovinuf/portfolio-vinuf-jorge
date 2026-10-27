@@ -118,13 +118,15 @@
     <div id="modal-proyecto" class="modal">
         <div class="modal-contenido tarjeta">
             <h3>Formulario de Proyecto</h3>
-            <form onsubmit="guardarDatos(event, 'modal-proyecto')">
+            <form id="form-proyecto">
+                <input type="hidden" id="proy-id">
                 <input type="text" id="proy-titulo" placeholder="Título (VARCHAR 150)" required>
                 <textarea id="proy-desc" rows="3" placeholder="Descripción (TEXT)" required></textarea>
                 <input type="text" id="proy-img" placeholder="URL de la Imagen (VARCHAR 255)">
                 <input type="text" id="proy-repo" placeholder="URL del Repositorio (VARCHAR 255)">
+                <input type="text" id="proy-tecnologias" placeholder="Tecnologías (separadas por coma)">
                 <label class="checkbox-label">
-                    <input type="checkbox" id="proy-activo"> Proyecto Activo (BOOL)
+                    <input type="checkbox" id="proy-activo" checked> Proyecto Activo (BOOL)
                 </label>
                 <div class="modal-acciones">
                     <button type="button" class="btn-secundario" onclick="cerrarModal('modal-proyecto')">Cancelar</button>

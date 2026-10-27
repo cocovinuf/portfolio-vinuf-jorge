@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { esProyectoValido } from '../../dist/proyecto.js';
 
 const prisma = new PrismaClient();
 const ADMIN_USER_ID = 1;
@@ -56,6 +57,7 @@ export async function obtener(req, res) {
 export async function crear(req, res) {
   const errores = validar(req.body);
   if (errores.length) return res.status(400).json({ errores });
+  if (!esProyectoValido(req.body)) return res.status(400).json({ error: 'Datos de proyecto invalidos' });
 
   const { titulo, descripcion, imagenUrl, urlRepositorio, estaActivo, tecnologias } = req.body;
   try {

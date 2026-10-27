@@ -24,6 +24,10 @@ router.get('/proyectos', (req, res) => {
     res.sendFile(path.join(frontendPath, 'vistas/proyectos.html'));
 });
 
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(frontendPath, 'vistas/admin/login_administrador.html'));
+});
+
 router.get('/panel_admin', (req, res) => {
     res.sendFile(path.join(frontendPath, 'vistas/admin/panel_admin.html'));
 });

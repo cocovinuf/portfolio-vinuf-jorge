@@ -124,7 +124,7 @@
                 <textarea id="proy-desc" rows="3" placeholder="Descripción (TEXT)" required></textarea>
                 <input type="text" id="proy-img" placeholder="URL de la Imagen (VARCHAR 255)">
                 <input type="text" id="proy-repo" placeholder="URL del Repositorio (VARCHAR 255)">
-                <input type="text" id="proy-tecnologias" placeholder="Tecnologías (separadas por coma)">
+                <div id="proy-tecnologias" class="checkbox-grupo"></div>
                 <label class="checkbox-label">
                     <input type="checkbox" id="proy-activo" checked> Proyecto Activo (BOOL)
                 </label>
@@ -182,7 +182,8 @@
     <div id="modal-tecnologia" class="modal">
         <div class="modal-contenido tarjeta">
             <h3>Formulario de Tecnología</h3>
-            <form onsubmit="guardarDatos(event, 'modal-tecnologia')">
+            <form id="form-tecnologia">
+                <input type="hidden" id="tec-id">
                 <input type="text" id="tec-nombre" placeholder="Nombre (VARCHAR 50)" required>
                 <textarea id="tec-desc" rows="3" placeholder="Descripción (TEXT)"></textarea>
                 <input type="text" id="tec-img" placeholder="URL de la Imagen (VARCHAR 255)">

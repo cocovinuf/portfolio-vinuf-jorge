@@ -257,6 +257,24 @@ footer {
     margin-top: 2rem;
 }
 
+/* Mini tarjetas de tecnologias dentro de cada proyecto */
+.tecnologias-proyecto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.mini-tarjeta-tecnologia {
+    background-color: var(--color-fondo-alt);
+    color: var(--color-acento);
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
 @media(max-width: 768px){
 .contenedor-tarjetas-proyectos{
     display: grid;
